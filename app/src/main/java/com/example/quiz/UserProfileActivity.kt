@@ -3,7 +3,9 @@ package com.example.quiz
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class UserProfileActivity : AppCompatActivity() {
@@ -12,26 +14,54 @@ class UserProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_profile)
 
-        // Get references to UI elements
-        val usernameTextView = findViewById<TextView>(R.id.displayUsername)
-        val emailTextView = findViewById<TextView>(R.id.displayEmail)
-        val shareButton = findViewById<Button>(R.id.shareButton)
+        // References to UI elements
+        val profileName = findViewById<TextView>(R.id.profileName)
+        val profileStats = findViewById<TextView>(R.id.profileStats)
+        val shareProfile = findViewById<Button>(R.id.shareProfile)
 
-        // Dummy user data (Replace with actual user data if available)
+        // Example data (this could come from a database or intent extras)
         val username = "John Doe"
-        val email = "john.doe@example.com"
+        val followers = 52
+        val following = 20
 
-        usernameTextView.text = "Username: $username"
-        emailTextView.text = "Email: $email"
+        // Set data to UI elements
+        profileName.text = username
+        profileStats.text = "$followers followers · $following following"
 
-        // Handle Share Button Click
-        shareButton.setOnClickListener {
-            val shareIntent = Intent().apply {
-                action = Intent.ACTION_SEND
-                putExtra(Intent.EXTRA_TEXT, "Check out my profile!\n\nUsername: $username\nEmail: $email")
+        // Handle Share Profile button click (Implicit Intent)
+        shareProfile.setOnClickListener {
+            val shareText = "Check out $username's profile on Quiz App: $followers followers and $following following!"
+            val intent = Intent(Intent.ACTION_SEND).apply {
                 type = "text/plain"
+                putExtra(Intent.EXTRA_TEXT, shareText)
             }
-            startActivity(Intent.createChooser(shareIntent, "Share Profile via"))
+
+            // Start the intent if there's an app that can handle it
+            if (intent.resolveActivity(packageManager) != null) {
+                startActivity(Intent.createChooser(intent, "Share Profile Using"))
+            } else {
+                Toast.makeText(this, "No apps available to share", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // Additional actions for navigation (example setup)
+        val navLibrary = findViewById<ImageView>(R.id.navLibrary)
+        val navHome = findViewById<ImageView>(R.id.navHome)
+        val navSettings = findViewById<ImageView>(R.id.navSettings)
+
+        navLibrary.setOnClickListener {
+            Toast.makeText(this, "Navigating to Library", Toast.LENGTH_SHORT).show()
+            // Add navigation logic here
+        }
+
+        navHome.setOnClickListener {
+            Toast.makeText(this, "Navigating to Home", Toast.LENGTH_SHORT).show()
+            // Add navigation logic here
+        }
+
+        navSettings.setOnClickListener {
+            Toast.makeText(this, "Navigating to Settings", Toast.LENGTH_SHORT).show()
+            // Add navigation logic here
         }
     }
 }
