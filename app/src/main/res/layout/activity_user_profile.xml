@@ -22,11 +22,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Username: JohnDoe"
-    android:textSize="18sp"
-    android:textColor="#FFFFFF"
-    android:layout_below="@id/profileTitle"
-    android:layout_marginTop="20dp"
-    android:padding="10dp" />
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:layout_below="@id/profileTitle"
+        android:layout_marginTop="20dp"
+        android:padding="10dp" />
 
     <!-- Email Display -->
     <TextView
@@ -34,18 +34,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Email: johndoe@example.com"
-    android:textSize="18sp"
-    android:textColor="#FFFFFF"
-    android:layout_below="@id/displayUsername"
-    android:layout_marginTop="10dp"
-    android:padding="10dp" />
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:layout_below="@id/displayUsername"
+        android:layout_marginTop="10dp"
+        android:padding="10dp" />
+
+    <!-- Share Profile Button -->
+    <Button
+        android:id="@+id/shareButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/displayEmail"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#2196F3"
+        android:text="Share Profile"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:padding="10dp" />
 
     <!-- Change Password Button -->
     <Button
         android:id="@+id/changePasswordButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/displayEmail"
+        android:layout_below="@id/shareButton"
         android:layout_marginTop="20dp"
         android:backgroundTint="#FF9800"
         android:text="Change Password"
